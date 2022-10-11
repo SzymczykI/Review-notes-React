@@ -1,0 +1,14 @@
+ table {
+    height: fit-content;
+    width: fit-content;
+    margin: 2rem;
+ }
+
+ .top_row {
+    margin-bottom: 1rem;
+ }
+ 
+ 
+ .type {
+    border: 1px solid;
+  }
