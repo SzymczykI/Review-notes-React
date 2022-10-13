@@ -1,11 +1,12 @@
-import { data, IContextNotes } from "../../types";
+import { IContextNotes } from "../../types";
 import { ACTIONS } from "./Actions";
 
-type Action = { type: "ADD"; payload: [] } | { type: "FILTER"; payload: [] };
+type Action = {
+  type: "ADD" | "FILTER";
+  payload: [];
+};
 
-const reducers = (state: {
-    data: data[]
-} , action: Action) => {
+const reducers = (state: IContextNotes, action: Action) => {
   switch (action.type) {
     case ACTIONS.ADD:
       return {
@@ -15,7 +16,7 @@ const reducers = (state: {
     case ACTIONS.FILTER:
       return {
         ...state,
-        data: action.payload
+        filteredData: action.payload,
       };
     default:
       return state;

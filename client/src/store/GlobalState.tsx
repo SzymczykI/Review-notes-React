@@ -4,9 +4,8 @@ import {
   ReactNode,
   useEffect,
   useReducer,
-  useState,
 } from "react";
-import { data, IContextNotes } from "../../types";
+import { IContextNotes } from "../../types";
 import { fetchData } from "../utils/fechData";
 import reducers from "./Reducers";
 
@@ -15,19 +14,21 @@ interface DataProviderProps {
 }
 
 export const DataContext = createContext<{
-  state: {
-    data: data[];
-  };
+  state: IContextNotes;
   dispatch: Dispatch<any>;
 }>({
   state: {
     data: [],
+    filteredData: [],
   },
   dispatch: () => null,
 });
 
 export const DataProvider = ({ children }: DataProviderProps) => {
-  const initialState: IContextNotes = { data: [] };
+  const initialState: IContextNotes = {
+    data: [],
+    filteredData: [],
+  };
   const [state, dispatch] = useReducer(reducers, initialState);
 
   useEffect(() => {
@@ -35,6 +36,10 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       if (res.err) return res.err;
       dispatch({
         type: "ADD",
+        payload: res,
+      });
+      dispatch({
+        type: "FILTER",
         payload: res,
       });
     });

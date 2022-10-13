@@ -32,4 +32,5 @@ export interface data {
 
 export interface IContextNotes {
   data: data[];
+  filteredData: data[];
 } 

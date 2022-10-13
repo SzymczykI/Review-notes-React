@@ -1,17 +1,14 @@
 import { Avatar, Badge, Dropdown } from "flowbite-react";
 import { GrLink } from "react-icons/gr";
 import { useContext, useState } from "react";
-import { IContextNotes } from "../../types";
 import { DataContext } from "../store/GlobalState";
 
 const Table = () => {
   const [visible, setVisible] = useState(3);
 
-  const { state } = useContext(DataContext)
-
-  const { data } = state 
-  const notes = data
-  console.log(notes)
+  const { state } = useContext(DataContext);
+  const { filteredData } = state;
+  const notes = filteredData;
 
   const loadMore = () => {
     setVisible(visible + 3);
@@ -39,7 +36,6 @@ const Table = () => {
   ];
 
   return (
-    
     <div className="flex flex-col items-center overflow-auto mx-8">
       <table className="text-sm mx-auto px-2 text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-left text-gray-900 uppercase dark:text-gray-400">
@@ -57,10 +53,10 @@ const Table = () => {
           {notes.slice(0, visible).map((note) => {
             return (
               <tr className="bg-white dark:bg-gray-800" key={note._id.$oid}>
-                <td className="pl-4 w-4" >
+                <td className="w-4">
                   <div className="flex items-center">
                     <input
-                      id="checkbox-table-search-1"
+                      id={note._id.$oid}
                       type="checkbox"
                       className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
@@ -72,10 +68,7 @@ const Table = () => {
                     </label>
                   </div>
                 </td>
-                <td
-                  
-                  className="py-4 px-4 max-w-{100} font-bold  text-gray-900 whitespace-nowrap dark:text-white"
-                >
+                <td className="py-4 px-4 max-w-{100} font-bold  text-gray-900 whitespace-nowrap dark:text-white">
                   {note.title}
                 </td>
                 <td className="type">
@@ -83,7 +76,7 @@ const Table = () => {
                     {note.type}
                   </Badge>
                 </td>
-                <td className="py-4 px-4 max">
+                <td className="py-4 px-2 max">
                   {note.status === "Pending documentation" && (
                     <Badge size="sm" color="indigo">
                       {note.status}
@@ -131,6 +124,7 @@ const Table = () => {
                 <td className="py-4 px-2">
                   {note.assignees.map((i) => (
                     <Dropdown
+                      key={i.$oid}
                       label={<Avatar alt="User" rounded={true} />}
                       arrowIcon={false}
                       inline={true}
@@ -148,7 +142,7 @@ const Table = () => {
                     <Dropdown.Item> {note.reporterId.$oid}</Dropdown.Item>
                   </Dropdown>
                 </td>
-                <td className="py-4 px-6">
+                <td className="py-4 px-2">
                   {note.sectionRef && (
                     <Badge color="gray" size="sm">
                       {note.sectionRef.replace(/(app-)/, "")}
@@ -177,7 +171,6 @@ const Table = () => {
         Load more
       </button>
     </div>
-  
   );
 };
 

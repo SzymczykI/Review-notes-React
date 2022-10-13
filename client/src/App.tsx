@@ -1,22 +1,17 @@
-import { useEffect, useState } from "react";
-import { data } from "../types";
-import "./App.css";
 import Filter from "./components/Filter";
 import Header from "./components/Header";
 import Table from "./components/Table";
 import { DataProvider } from "./store/GlobalState";
 
 function App() {
-
-  
   return (
     <DataProvider>
       <div className="App">
         <header>
           <Header />
         </header>
-          <Filter />
-          <Table />
+        <Filter />
+        <Table />
       </div>
     </DataProvider>
   );
