@@ -29,3 +29,7 @@ export interface data {
     $date: string;
   };
 }
+
+export interface IContextNotes {
+  data: data[];
+} 
