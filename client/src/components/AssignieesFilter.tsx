@@ -9,17 +9,16 @@ const AssignieesFilter = () => {
   const assignees = filteredArr.map((a) => a.assignees.map((a) => a.$oid));
   const assigneesSet = assignees.flat();
 
-
   return (
     <div>
       <h1 className="text-sm">Assignees</h1>
-      <div className="block p-1 pl-1 w-fit text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <div className="block p-1 pl-1 w-40 h-10 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         {assigneesSet.map((assignee) => {
           return (
             <span
               key={assignee}
               id="badge-dismiss-default"
-              className="inline-flex items-center py-1 px-2 mr-2 text-sm font-medium text-gray-400 bg-gray-100 rounded dark:bg-blue-200 dark:text-blue-800"
+              className="inline-flex items-center py-1 px-2 mr-1 text-sm font-medium text-gray-400 bg-gray-100 rounded dark:bg-blue-200 dark:text-blue-800"
             >
               {assignee}
               <button

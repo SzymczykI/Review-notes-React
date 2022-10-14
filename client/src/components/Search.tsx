@@ -28,7 +28,7 @@ const Search = () => {
 
   return (
     <>
-      <div className=" bg-white dark:bg-gray-900">
+      <div className="bg-white dark:bg-gray-900 md:mb-2">
         <label htmlFor="table-search" className="sr-only">
           Search title
         </label>
@@ -51,7 +51,7 @@ const Search = () => {
           <input
             type="text"
             id="table-search"
-            className="block p-2 pl-10 w-64 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-2 pl-10 w-52 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search title"
             onChange={(e) => setSearch(e.target.value)}
           />

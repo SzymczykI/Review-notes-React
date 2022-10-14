@@ -36,7 +36,7 @@ const Table = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center overflow-auto mx-8">
+    <div className="flex flex-col items-center overflow-auto mt-14 mx-8">
       <table className="text-sm mx-auto px-2 text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-left text-gray-900 uppercase dark:text-gray-400">
           <tr>
@@ -68,7 +68,7 @@ const Table = () => {
                     </label>
                   </div>
                 </td>
-                <td className="py-4 px-4 max-w-{100} font-bold  text-gray-900 whitespace-nowrap dark:text-white">
+                <td className="py-4 px-4 font-bold  text-gray-900 whitespace-nowrap dark:text-white">
                   {note.title}
                 </td>
                 <td className="type">
@@ -76,7 +76,7 @@ const Table = () => {
                     {note.type}
                   </Badge>
                 </td>
-                <td className="py-4 px-2 max">
+                <td className="py-4 px-2">
                   {note.status === "Pending documentation" && (
                     <Badge size="sm" color="indigo">
                       {note.status}

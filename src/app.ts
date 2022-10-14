@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.listen(port, async () => {
-  console.log(`app is running at http://localhost${port}`);
+  console.log(`app is running at http://localhost:${port}`);
 
   routes(app);
 });
