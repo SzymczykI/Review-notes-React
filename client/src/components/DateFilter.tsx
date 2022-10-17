@@ -6,7 +6,7 @@ const DateFilter = () => {
   const { state, dispatch } = useContext(DataContext);
   const { filteredData } = state;
   const filteredArr = filteredData;
-  console.log(dateValue);
+
   const dataFilterhandler = () => {
     const newArr = filteredArr.filter(
       (note) =>

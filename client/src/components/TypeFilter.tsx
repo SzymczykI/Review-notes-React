@@ -5,15 +5,16 @@ import filterHandler from "../utils/filterHelpers";
 
 const TypeFilter = () => {
   const { state, dispatch } = useContext(DataContext);
-  const { filteredData } = state;
+  const { filteredData, data } = state;
   const filtered = filteredData;
+  const dataArr = data;
 
   return (
     <>
       <h1 className="text-sm">Types</h1>
       <Button.Group>
         <Button
-          onClick={() => filterHandler("All", dispatch, filtered)}
+          onClick={() => filterHandler("All", dispatch, dataArr)}
           color="gray"
         >
           All
