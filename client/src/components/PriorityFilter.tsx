@@ -6,33 +6,31 @@ import filterHandler from "../utils/filterHelpers";
 const PriorityFilter = () => {
   const { state, dispatch } = useContext(DataContext);
   const { filteredData, data } = state;
-  const filtered = filteredData;
-  const dataArr = data;
 
   return (
     <>
       <h1 className="text-sm">Priority</h1>
       <Button.Group>
         <Button
-          onClick={() => filterHandler("All", dispatch, dataArr)}
+          onClick={() => filterHandler("All", dispatch, data)}
           color="gray"
         >
           All
         </Button>
         <Button
-          onClick={() => filterHandler("Low", dispatch, filtered)}
+          onClick={() => filterHandler("Low", dispatch, filteredData)}
           color="gray"
         >
           Low
         </Button>
         <Button
-          onClick={() => filterHandler("Medium", dispatch, filtered)}
+          onClick={() => filterHandler("Medium", dispatch, filteredData)}
           color="gray"
         >
           Medium
         </Button>
         <Button
-          onClick={() => filterHandler("High", dispatch, filtered)}
+          onClick={() => filterHandler("High", dispatch, filteredData)}
           color="gray"
         >
           High

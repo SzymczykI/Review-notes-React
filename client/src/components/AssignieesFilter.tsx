@@ -4,9 +4,8 @@ import { DataContext } from "../store/GlobalState";
 const AssignieesFilter = () => {
   const { state } = useContext(DataContext);
   const { filteredData } = state;
-  const filteredArr = filteredData;
 
-  const assignees = filteredArr.map((a) => a.assignees.map((a) => a.$oid));
+  const assignees = filteredData.map((a) => a.assignees.map((a) => a.$oid));
   const assigneesSet = assignees.flat();
 
   return (

@@ -1,19 +1,18 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import { DataContext } from "../store/GlobalState";
 
 const SectionFilter = () => {
   const { state, dispatch } = useContext(DataContext);
   const { filteredData } = state;
-  const filteredArr = filteredData;
 
-  const sections = filteredArr
+  const sections = filteredData
     .map((a) => a.sectionRef)
     .filter((a) => a !== null);
   const sectionSet = new Set(sections);
   const myArr = Array.from(sectionSet);
 
-  const removeTagHandler = (reporter: string) => {
-    const newData = filteredArr.filter((i) => i.sectionRef !== reporter);
+  const removeTagHandler = (section: string) => {
+    const newData = filteredData.filter((i) => i.sectionRef !== section);
     dispatch({
       type: "FILTER",
       payload: newData,
@@ -22,7 +21,7 @@ const SectionFilter = () => {
 
   return (
     <div>
-      <h1 className="text-sm">Reporter</h1>
+      <h1 className="text-sm">Section</h1>
       <div className="p-1 pl-1 w-52 h-14 text-sm overflow-auto text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         {myArr.map((section) => {
           return (

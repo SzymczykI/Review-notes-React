@@ -4,14 +4,13 @@ import { DataContext } from "../store/GlobalState";
 const ReporterFilter = () => {
   const { state, dispatch } = useContext(DataContext);
   const { filteredData } = state;
-  const filteredArr = filteredData;
 
-  const reporters = filteredArr.map((a) => a.reporterId.$oid);
+  const reporters = filteredData.map((a) => a.reporterId.$oid);
   const userSet = new Set(reporters);
   const myArr = Array.from(userSet);
 
   const removeTagHandler = (reporter: string) => {
-    const newData = filteredArr.filter((i) => i.reporterId.$oid !== reporter);
+    const newData = filteredData.filter((i) => i.reporterId.$oid !== reporter);
     dispatch({
       type: "FILTER",
       payload: newData,

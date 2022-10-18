@@ -5,10 +5,9 @@ const DateFilter = () => {
   const [dateValue, setDateValue] = useState("");
   const { state, dispatch } = useContext(DataContext);
   const { filteredData } = state;
-  const filteredArr = filteredData;
 
   const dataFilterhandler = () => {
-    const newArr = filteredArr.filter(
+    const newArr = filteredData.filter(
       (note) =>
         note.dueDate.toLocaleLowerCase().includes(dateValue) ||
         note.createdAt.$date.toLocaleLowerCase().includes(dateValue) ||
