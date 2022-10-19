@@ -1,23 +1,26 @@
-import { Avatar, Badge, Dropdown } from "flowbite-react";
 import { GrLink } from "react-icons/gr";
 import { useContext, useState } from "react";
 import { DataContext } from "../store/GlobalState";
+import Title from "./columns/Title";
+import Type from "./columns/Type";
+import Checkbox from "./columns/Checkbox";
+import Status from "./columns/Status";
+import { Priority } from "./columns/Priority";
+import DueDate from "./columns/DueDate";
+import Assignees from "./columns/Assignees";
+import Reporter from "./columns/Reporter";
+import Section from "./columns/Section";
+import CreatedAt from "./columns/CreatedAt";
+import UpdatedAt from "./columns/UpdatedAt";
 
 const Table = () => {
   const [visible, setVisible] = useState(3);
 
   const { state } = useContext(DataContext);
-  const { filteredData } = state;
-  const notes = filteredData;
+  const { filteredData, users } = state;
 
   const loadMore = () => {
     setVisible(visible + 3);
-  };
-
-  const dateFormat = (date: string) => {
-    const dateObj = new Date(date);
-
-    return dateObj.toLocaleString();
   };
 
   const headers = [
@@ -35,6 +38,20 @@ const Table = () => {
     { key: "link", label: "" },
   ];
 
+  const statusBadges = [
+    { title: "In Progress", color: "purple" },
+    { title: "Pending documentation", color: "indigo" },
+    { title: "Closed", color: "pink" },
+    { title: "Not started", color: "gray" },
+    { title: "Addressed", color: "success" },
+  ];
+
+  const priorityBages = [
+    { title: "Low", color: "success" },
+    { title: "Medium", color: "warning" },
+    { title: "High", color: "failure" },
+  ];
+
   return (
     <div className="flex flex-col items-center overflow-auto mt-14 mx-8">
       <table className="text-sm mx-auto px-2 text-gray-500 dark:text-gray-400">
@@ -50,111 +67,41 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {notes.slice(0, visible).map((note) => {
+          {filteredData.slice(0, visible).map((note) => {
             return (
               <tr className="bg-white dark:bg-gray-800" key={note._id.$oid}>
-                <td className="w-4">
-                  <div className="flex items-center">
-                    <input
-                      id={note._id.$oid}
-                      type="checkbox"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label
-                      htmlFor="checkbox-table-search-1"
-                      className="sr-only"
-                    >
-                      checkbox
-                    </label>
-                  </div>
-                </td>
-                <td className="py-4 px-4 font-bold  text-gray-900 whitespace-nowrap dark:text-white">
-                  {note.title}
-                </td>
-                <td className="type">
-                  <Badge color="gray" size="sm">
-                    {note.type}
-                  </Badge>
-                </td>
+                <Checkbox noteId={note._id.$oid} />
+                <Title title={note.title} />
+                <Type type={note.type} />
                 <td className="py-4 px-2">
-                  {note.status === "Pending documentation" && (
-                    <Badge size="sm" color="indigo">
-                      {note.status}
-                    </Badge>
-                  )}
-                  {note.status === "In Progress" && (
-                    <Badge size="sm" color="purple">
-                      {note.status}
-                    </Badge>
-                  )}
-                  {note.status === "Closed" && (
-                    <Badge size="sm" color="pink">
-                      {note.status}
-                    </Badge>
-                  )}
-                  {note.status === "Not started" && (
-                    <Badge size="sm" color="gray">
-                      {note.status}
-                    </Badge>
-                  )}
-                  {note.status === "Addressed" && (
-                    <Badge size="sm" color="success">
-                      {note.status}
-                    </Badge>
-                  )}
+                  {statusBadges.map((type) => {
+                    if (type.title === note.status)
+                      return <Status status={note.status} color={type.color} />;
+                    return null;
+                  })}
                 </td>
                 <td className="py-4 px-4">
-                  {note.priority.text === "Low" && (
-                    <Badge size="sm" color="success">
-                      Low
-                    </Badge>
-                  )}
-                  {note.priority.text === "Medium" && (
-                    <Badge size="sm" color="warning">
-                      Medium
-                    </Badge>
-                  )}
-                  {note.priority.text === "High" && (
-                    <Badge size="sm" color="failure">
-                      High
-                    </Badge>
-                  )}
+                  {priorityBages.map((type) => {
+                    if (type.title === note.priority.text)
+                      return (
+                        <Priority priority={note.priority} color={type.color} />
+                      );
+                    return null;
+                  })}
                 </td>
-                <td className="py-4 w-fit">{note.dueDate}</td>
+                <DueDate dueDate={note.dueDate} />
                 <td className="py-4 px-2">
-                  {note.assignees.map((i) => (
-                    <Dropdown
-                      key={i.$oid}
-                      label={<Avatar alt="User" rounded={true} />}
-                      arrowIcon={false}
-                      inline={true}
-                    >
-                      <Dropdown.Item>{i.$oid}</Dropdown.Item>
-                    </Dropdown>
-                  ))}
+                  {note.assignees.map((i) => {
+                    const user = users.filter((a) => a.id === i.$oid);
+                    return <Assignees user={user} />;
+                  })}
                 </td>
-                <td className="py-4 px-6">
-                  <Dropdown
-                    label={<Avatar alt="User" rounded={true} />}
-                    arrowIcon={false}
-                    inline={true}
-                  >
-                    <Dropdown.Item> {note.reporterId.$oid}</Dropdown.Item>
-                  </Dropdown>
-                </td>
+                <Reporter reporter={note.reporterId.$oid} />
                 <td className="py-4 px-2">
-                  {note.sectionRef && (
-                    <Badge color="gray" size="sm">
-                      {note.sectionRef.replace(/(app-)/, "")}
-                    </Badge>
-                  )}
+                  {note.sectionRef && <Section section={note.sectionRef} />}
                 </td>
-                <td className="py-4 px-2">
-                  {dateFormat(note.createdAt.$date)}
-                </td>
-                <td className="py-4 px-2">
-                  {dateFormat(note.updatedAt.$date)}
-                </td>
+                <CreatedAt date={note.createdAt.$date} />
+                <UpdatedAt date={note.updatedAt.$date} />
                 <td className="py-4 px-2">
                   <GrLink />
                 </td>

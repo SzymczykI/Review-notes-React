@@ -1,10 +1,10 @@
-import AssignieesFilter from "./AssignieesFilter";
-import DateFilter from "./DateFilter";
-import PriorityFilter from "./PriorityFilter";
-import ReporterFilter from "./ReporterFilter";
-import Search from "./Search";
-import SectionFilter from "./SectionFilter";
-import TypeFilter from "./TypeFilter";
+import AssignieesFilter from "./filters/AssignieesFilter";
+import DateFilter from "./filters/DateFilter";
+import PriorityFilter from "./filters/PriorityFilter";
+import ReporterFilter from "./filters/ReporterFilter";
+import Search from "./filters/Search";
+import SectionFilter from "./filters/SectionFilter";
+import TypeFilter from "./filters/TypeFilter";
 
 const Filter = () => {
   return (

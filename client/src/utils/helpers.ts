@@ -1,6 +1,10 @@
-import { data } from "../../types";
+import { Reviewnotes } from "../../types";
 
-const filterHandler = (key: string, dispatch: any, filteredArr: data[]) => {
+const filterHandler = (
+  key: string,
+  dispatch: any,
+  filteredArr: Reviewnotes[]
+) => {
   if (key === "All") {
     dispatch({
       type: "FILTER",
@@ -44,4 +48,13 @@ const filterHandler = (key: string, dispatch: any, filteredArr: data[]) => {
   }
 };
 
-export default filterHandler;
+const dateFormat = (date: string) => {
+  const dateObj = new Date(date);
+
+  return dateObj.toLocaleString();
+};
+
+export {
+  filterHandler,
+  dateFormat,
+};

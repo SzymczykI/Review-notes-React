@@ -1,4 +1,4 @@
-export interface data {
+export interface Reviewnotes {
   _id: {
     $oid: string;
   };
@@ -30,7 +30,14 @@ export interface data {
   };
 }
 
+export interface Users {
+  id: string;
+  name: string;
+  photo: string;
+}
+
 export interface IContextNotes {
-  data: data[];
-  filteredData: data[];
+  reviewnotes: Reviewnotes[];
+  users: Users[];
+  filteredData: Reviewnotes[];
 } 

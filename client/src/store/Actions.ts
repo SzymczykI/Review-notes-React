@@ -1,4 +1,5 @@
 export const ACTIONS = {
-    ADD: 'ADD',
+    ADD_NOTES: 'ADD_NOTES',
+    ADD_USERS: 'ADD_USERS',
     FILTER: 'FILTER',
 }

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DataContext } from "../store/GlobalState";
+import { DataContext } from "../../store/GlobalState";
 
 const AssignieesFilter = () => {
   const { state } = useContext(DataContext);

@@ -1,5 +1,5 @@
-export const fetchData = async () => {
-    const response = await fetch("http://localhost:1337/all").then(response => response.json())
+export const fetchData = async (path: string) => {
+    const response = await fetch(`http://localhost:1337/${path}`).then(response => response.json())
       .catch((err) => console.log(err));
     
     return response

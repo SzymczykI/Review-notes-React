@@ -1,18 +1,18 @@
 import { Button } from "flowbite-react";
 import { useContext } from "react";
-import { DataContext } from "../store/GlobalState";
-import filterHandler from "../utils/filterHelpers";
+import { DataContext } from "../../store/GlobalState";
+import { filterHandler } from "../../utils/helpers";
 
 const TypeFilter = () => {
   const { state, dispatch } = useContext(DataContext);
-  const { filteredData, data } = state;
+  const { filteredData, reviewnotes } = state;
 
   return (
     <>
       <h1 className="text-sm">Types</h1>
       <Button.Group>
         <Button
-          onClick={() => filterHandler("All", dispatch, data)}
+          onClick={() => filterHandler("All", dispatch, reviewnotes)}
           color="gray"
         >
           All

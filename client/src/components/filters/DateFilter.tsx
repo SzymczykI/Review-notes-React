@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { DataContext } from "../store/GlobalState";
+import { DataContext } from "../../store/GlobalState";
 
 const DateFilter = () => {
   const [dateValue, setDateValue] = useState("");
@@ -9,9 +9,9 @@ const DateFilter = () => {
   const dataFilterhandler = () => {
     const newArr = filteredData.filter(
       (note) =>
-        note.dueDate.toLocaleLowerCase().includes(dateValue) ||
-        note.createdAt.$date.toLocaleLowerCase().includes(dateValue) ||
-        note.updatedAt.$date.toLocaleLowerCase().includes(dateValue)
+        note.dueDate.toLocaleString().includes(dateValue) ||
+        note.createdAt.$date.toLocaleString().includes(dateValue) ||
+        note.updatedAt.$date.toLocaleString().includes(dateValue)
     );
     dispatch({
       type: "FILTER",

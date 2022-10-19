@@ -1,15 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { DataContext } from "../store/GlobalState";
+import { DataContext } from "../../store/GlobalState";
 
 const Search = () => {
   const [search, setSearch] = useState("");
   const { state, dispatch } = useContext(DataContext);
-  const { data, filteredData } = state;
-  const initialData = data;
-  const filtered = filteredData;
+  const { reviewnotes, filteredData } = state;
+
 
   useEffect(() => {
-    const newArr = filtered.filter((note) =>
+    const newArr = filteredData.filter((note) =>
       note.title.toLocaleLowerCase().includes(search)
     );
     dispatch({
@@ -22,7 +21,7 @@ const Search = () => {
   const clearFilterHandler = () => {
     dispatch({
       type: "FILTER",
-      payload: initialData,
+      payload: reviewnotes,
     });
   };
 
