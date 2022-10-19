@@ -31,9 +31,9 @@ Project is: _in progress_
 
 ## Setup
 
-Server setup
-In the project root directory (install dependencies and run server):
+Server setup:
 
+### `cd server`
 ### `npm install`
 ### `npm run dev`
 
