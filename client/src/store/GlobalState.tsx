@@ -6,7 +6,7 @@ import {
   useReducer,
 } from "react";
 import { IContextNotes } from "../../types";
-import { fetchData } from "../utils/fechData";
+import { fetchData } from "../utils/fetchData";
 import reducers from "./Reducers";
 
 interface DataProviderProps {

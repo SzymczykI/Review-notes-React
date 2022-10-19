@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
+import { removeTagHandler } from "../../utils/helpers";
 
 const SectionFilter = () => {
   const { state, dispatch } = useContext(DataContext);
@@ -9,21 +10,13 @@ const SectionFilter = () => {
     .map((a) => a.sectionRef)
     .filter((a) => a !== null);
   const sectionSet = new Set(sections);
-  const myArr = Array.from(sectionSet);
-
-  const removeTagHandler = (section: string) => {
-    const newData = filteredData.filter((i) => i.sectionRef !== section);
-    dispatch({
-      type: "FILTER",
-      payload: newData,
-    });
-  };
+  const sectionsArr = Array.from(sectionSet);
 
   return (
     <div>
       <h1 className="text-sm">Section</h1>
       <div className="p-1 pl-1 w-52 h-14 text-sm overflow-auto text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        {myArr.map((section) => {
+        {sectionsArr.map((section) => {
           return (
             <span
               key={section}
@@ -36,7 +29,9 @@ const SectionFilter = () => {
                 className="inline-flex items-center p-0.5 ml-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-300 dark:hover:text-blue-900"
                 data-dismiss-target="#badge-dismiss-default"
                 aria-label="Remove"
-                onClick={() => removeTagHandler(section)}
+                onClick={() =>
+                  removeTagHandler(section, filteredData, dispatch)
+                }
               >
                 <svg
                   aria-hidden="true"

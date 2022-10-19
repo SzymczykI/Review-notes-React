@@ -1,40 +1,34 @@
 import { useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
+import { removeTagHandler } from "../../utils/helpers";
 
 const ReporterFilter = () => {
   const { state, dispatch } = useContext(DataContext);
-  const { filteredData } = state;
+  const { filteredData, users } = state;
 
   const reporters = filteredData.map((a) => a.reporterId.$oid);
   const userSet = new Set(reporters);
-  const myArr = Array.from(userSet);
-
-  const removeTagHandler = (reporter: string) => {
-    const newData = filteredData.filter((i) => i.reporterId.$oid !== reporter);
-    dispatch({
-      type: "FILTER",
-      payload: newData,
-    });
-  };
+  const reportersArr = Array.from(userSet);
 
   return (
     <div>
       <h1 className="text-sm">Reporter</h1>
-      <div className="block p-1 pl-1 w-40 h-10 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        {myArr.map((person) => {
+      <div className="block p-1 pl-1 w-40 h-10 overflow-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        {reportersArr.map((person) => {
+          const user = users.filter((a) => a.id === person);
           return (
             <span
               key={person}
               id="badge-dismiss-default"
-              className="inline-flex items-center py-1 px-2 mr-1 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-800"
+              className="inline-flex items-center mb-1 py-1 px-2 mr-1 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-800"
             >
-              {person}
+              {user[0].name}
               <button
                 type="button"
                 className="inline-flex items-center p-0.5 ml-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-300 dark:hover:text-blue-900"
                 data-dismiss-target="#badge-dismiss-default"
                 aria-label="Remove"
-                onClick={() => removeTagHandler(person)}
+                onClick={() => removeTagHandler(person, filteredData, dispatch)}
               >
                 <svg
                   aria-hidden="true"

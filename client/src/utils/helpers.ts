@@ -1,6 +1,6 @@
 import { Reviewnotes } from "../../types";
 
-const filterHandler = (
+export const filterHandler = (
   key: string,
   dispatch: any,
   filteredArr: Reviewnotes[]
@@ -48,13 +48,20 @@ const filterHandler = (
   }
 };
 
-const dateFormat = (date: string) => {
+export const dateFormat = (date: string) => {
   const dateObj = new Date(date);
 
   return dateObj.toLocaleString();
 };
 
-export {
-  filterHandler,
-  dateFormat,
+export const removeTagHandler = (
+  criterium: string,
+  filteredData: Reviewnotes[],
+  dispatch: any
+) => {
+  const newData = filteredData.filter((i) => i.reporterId.$oid !== criterium);
+  dispatch({
+    type: "FILTER",
+    payload: newData,
+  });
 };

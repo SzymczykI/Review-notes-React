@@ -3,7 +3,7 @@ import { DataContext } from "../../store/GlobalState";
 
 const AssignieesFilter = () => {
   const { state } = useContext(DataContext);
-  const { filteredData } = state;
+  const { filteredData, users } = state;
 
   const assignees = filteredData.map((a) => a.assignees.map((a) => a.$oid));
   const assigneesSet = assignees.flat();
@@ -11,15 +11,16 @@ const AssignieesFilter = () => {
   return (
     <div>
       <h1 className="text-sm">Assignees</h1>
-      <div className="block p-1 pl-1 w-40 h-10 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <div className="block p-1 pl-1 w-40 h-10 overflow-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         {assigneesSet.map((assignee) => {
+          const user = users.filter((a) => a.id === assignee);
           return (
             <span
               key={assignee}
               id="badge-dismiss-default"
-              className="inline-flex items-center py-1 px-2 mr-1 text-sm font-medium text-gray-400 bg-gray-100 rounded dark:bg-blue-200 dark:text-blue-800"
+              className="inline-flex items-center py-1 mb-1 px-2 mr-1 text-sm font-medium text-gray-400 bg-gray-100 rounded dark:bg-blue-200 dark:text-blue-800"
             >
-              {assignee}
+              {user[0].name}
               <button
                 type="button"
                 className="inline-flex items-center p-0.5 ml-2 text-sm text-gray-400 bg-transparent rounded-sm "

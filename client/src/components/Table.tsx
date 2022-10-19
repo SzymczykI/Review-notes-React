@@ -12,6 +12,7 @@ import Reporter from "./columns/Reporter";
 import Section from "./columns/Section";
 import CreatedAt from "./columns/CreatedAt";
 import UpdatedAt from "./columns/UpdatedAt";
+import { headers, priorityBages, statusBadges } from "../utils/dataArrays";
 
 const Table = () => {
   const [visible, setVisible] = useState(3);
@@ -22,35 +23,6 @@ const Table = () => {
   const loadMore = () => {
     setVisible(visible + 3);
   };
-
-  const headers = [
-    { key: "check", label: "" },
-    { key: "title", label: "Title" },
-    { key: "type", label: "Type" },
-    { key: "state", label: "State" },
-    { key: "priority", label: "Priority" },
-    { key: "due_date", label: "Due date" },
-    { key: "Assignees", label: "Assignees" },
-    { key: "Reporter", label: "Reporter" },
-    { key: "Section", label: "Section" },
-    { key: "Created", label: "Created" },
-    { key: "Updated", label: "Updated" },
-    { key: "link", label: "" },
-  ];
-
-  const statusBadges = [
-    { title: "In Progress", color: "purple" },
-    { title: "Pending documentation", color: "indigo" },
-    { title: "Closed", color: "pink" },
-    { title: "Not started", color: "gray" },
-    { title: "Addressed", color: "success" },
-  ];
-
-  const priorityBages = [
-    { title: "Low", color: "success" },
-    { title: "Medium", color: "warning" },
-    { title: "High", color: "failure" },
-  ];
 
   return (
     <div className="flex flex-col items-center overflow-auto mt-14 mx-8">
