@@ -54,12 +54,39 @@ export const dateFormat = (date: string) => {
   return dateObj.toLocaleString();
 };
 
-export const removeTagHandler = (
+export const removeReporterTagHandler = (
   criterium: string,
   filteredData: Reviewnotes[],
   dispatch: any
 ) => {
   const newData = filteredData.filter((i) => i.reporterId.$oid !== criterium);
+  dispatch({
+    type: "FILTER",
+    payload: newData,
+  });
+};
+
+export const removeSectionTagHandler = (
+  criterium: string,
+  filteredData: Reviewnotes[],
+  dispatch: any
+) => {
+  const newData = filteredData.filter((i) => i.sectionRef !== criterium);
+  dispatch({
+    type: "FILTER",
+    payload: newData,
+  });
+};
+
+export const removeAssigneeTagHandler = (
+  criterium: string,
+  filteredData: Reviewnotes[],
+  dispatch: any
+) => {
+  const newData = filteredData.filter((item) => {
+    if (item.assignees[0]) return item.assignees[0].$oid !== criterium;
+    return filteredData;
+  });
   dispatch({
     type: "FILTER",
     payload: newData,

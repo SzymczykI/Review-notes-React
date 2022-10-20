@@ -20,8 +20,6 @@ const Table = () => {
   const { state } = useContext(DataContext);
   const { filteredData, users } = state;
 
-  console.log(users, filteredData)
-
   const loadMore = () => {
     setVisible(visible + 3);
   };

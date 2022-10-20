@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
-import { removeTagHandler } from "../../utils/helpers";
+import { removeSectionTagHandler } from "../../utils/helpers";
 
 const SectionFilter = () => {
   const { state, dispatch } = useContext(DataContext);
@@ -30,7 +30,7 @@ const SectionFilter = () => {
                 data-dismiss-target="#badge-dismiss-default"
                 aria-label="Remove"
                 onClick={() =>
-                  removeTagHandler(section, filteredData, dispatch)
+                  removeSectionTagHandler(section, filteredData, dispatch)
                 }
               >
                 <svg
