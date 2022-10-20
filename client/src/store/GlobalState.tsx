@@ -34,23 +34,27 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const [state, dispatch] = useReducer(reducers, initialState);
 
   useEffect(() => {
-    fetchData('reviewnotes').then((res) => {
-      dispatch({
-        type: "ADD_NOTES",
-        payload: res,
-      });
-      dispatch({
-        type: "FILTER",
-        payload: res,
-      });
-    }).catch((err) => console.log(err));
+    fetchData("reviewnotes")
+      .then((res) => {
+        dispatch({
+          type: "ADD_NOTES",
+          payload: res,
+        });
+        dispatch({
+          type: "FILTER",
+          payload: res,
+        });
+      })
+      .catch((err) => console.log(err));
 
-    fetchData('users').then((res) => {
-      dispatch({
-        type: "ADD_USERS",
-        payload: res,
-      });
-    })
+    fetchData("users")
+      .then((res) => {
+        dispatch({
+          type: "ADD_USERS",
+          payload: res,
+        });
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (

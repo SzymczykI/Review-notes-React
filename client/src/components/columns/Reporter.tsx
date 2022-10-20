@@ -11,6 +11,7 @@ const Reporter = ({ reporter }: ReporterProps) => {
   const { users } = state;
 
   const user = users.filter((a) => a.id === reporter);
+  console.log('users', users)
 
   return (
     <td className="py-4 px-6">
