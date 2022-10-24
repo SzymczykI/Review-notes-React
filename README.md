@@ -31,6 +31,9 @@ Project is: _in progress_
 
 ## Setup
 
+main branch -> more frontend approach
+BEApproach branch -> load more and some filtering moved to backend
+
 Server setup:
 
 ### `cd server`
