@@ -1,5 +1,5 @@
 import { GrLink } from "react-icons/gr";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { DataContext } from "../store/GlobalState";
 import Title from "./columns/Title";
 import Type from "./columns/Type";
@@ -15,13 +15,22 @@ import UpdatedAt from "./columns/UpdatedAt";
 import { headers, priorityBages, statusBadges } from "../utils/dataArrays";
 
 const Table = () => {
-  const [visible, setVisible] = useState(3);
 
-  const { state } = useContext(DataContext);
-  const { filteredData, users } = state;
+  const { state, dispatch } = useContext(DataContext);
+  const { filteredData, users, filters } = state;
 
   const loadMore = () => {
-    setVisible(visible + 3);
+    const newFilters = [{
+      limit: filters[0].limit + 3,
+      type: filters[0].type,
+      priority: filters[0].priority,
+      sectionRef: filters[0].sectionRef,
+    }];
+
+    dispatch({
+      type: "FILTERS",
+      payload: newFilters,
+    });
   };
 
   return (
@@ -39,7 +48,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.slice(0, visible).map((note) => {
+          {filteredData.map((note) => {
             return (
               <tr className="bg-white dark:bg-gray-800" key={note._id.$oid}>
                 <Checkbox noteId={note._id.$oid} />

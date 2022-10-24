@@ -4,7 +4,7 @@ import { DataContext } from "../../store/GlobalState";
 const Search = () => {
   const [search, setSearch] = useState("");
   const { state, dispatch } = useContext(DataContext);
-  const { reviewnotes, filteredData } = state;
+  const { reviewnotes, filteredData, filters } = state;
 
 
   useEffect(() => {
@@ -23,6 +23,16 @@ const Search = () => {
       type: "FILTER",
       payload: reviewnotes,
     });
+    const newFilters = [{
+      limit: filters[0].limit,
+      type: "",
+      priority: "",
+      sectionRef: "",
+    }];
+    dispatch({
+      type: "FILTERS",
+      payload: newFilters,
+    })
   };
 
   return (

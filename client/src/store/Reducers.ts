@@ -2,7 +2,7 @@ import { IContextNotes } from "../../types";
 import { ACTIONS } from "./Actions";
 
 type Action = {
-  type: "ADD_NOTES" | "ADD_USERS" | "FILTER";
+  type: "ADD_NOTES" | "ADD_USERS" | "FILTER" | "FILTERS";
   payload: [];
 };
 
@@ -22,6 +22,11 @@ const reducers = (state: IContextNotes, action: Action) => {
       return {
         ...state,
         filteredData: action.payload,
+      };
+    case ACTIONS.FILTERS:
+      return {
+        ...state,
+        filters: action.payload,
       };
     default:
       return state;

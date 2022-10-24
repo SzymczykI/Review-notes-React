@@ -21,6 +21,12 @@ export const DataContext = createContext<{
     reviewnotes: [],
     users: [],
     filteredData: [],
+    filters: [{
+      limit: 3,
+      type: "",
+      priority: "",
+      sectionRef: "",
+    }],
   },
   dispatch: () => null,
 });
@@ -30,20 +36,27 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     reviewnotes: [],
     users: [],
     filteredData: [],
+    filters: [{
+      limit: 3,
+      type: "",
+      priority: "",
+      sectionRef: "",
+    }],
   };
-  const [state, dispatch] = useReducer(reducers, initialState);
+const [state, dispatch] = useReducer(reducers, initialState);
+ const filters = state.filters
 
   useEffect(() => {
     fetchData("users")
-    .then((res) => {
-      dispatch({
-        type: "ADD_USERS",
-        payload: res,
-      });
-    })
-    .catch((err) => console.log(err));  
-    
-    fetchData("reviewnotes")
+      .then((res) => {
+        dispatch({
+          type: "ADD_USERS",
+          payload: res,
+        });
+      })
+      .catch((err) => console.log(err));
+
+    fetchData("reviewnotes", filters)
       .then((res) => {
         dispatch({
           type: "ADD_NOTES",
@@ -55,9 +68,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         });
       })
       .catch((err) => console.log(err));
-   
-
-  }, []);
+  }, [filters]);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>

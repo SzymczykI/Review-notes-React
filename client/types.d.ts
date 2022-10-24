@@ -40,4 +40,12 @@ export interface IContextNotes {
   reviewnotes: Reviewnotes[];
   users: Users[];
   filteredData: Reviewnotes[];
+  filters: Filters[]
 } 
+
+export interface Filters {
+  limit: number;
+  type: string;
+  priority: string;
+  sectionRef: string
+}

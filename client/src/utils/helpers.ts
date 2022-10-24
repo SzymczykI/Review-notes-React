@@ -1,49 +1,65 @@
-import { Reviewnotes } from "../../types";
+import { Filters, Reviewnotes } from "../../types";
 
 export const filterHandler = (
   key: string,
   dispatch: any,
-  filteredArr: Reviewnotes[]
+  filters: Filters[]
 ) => {
   if (key === "All") {
+    const newFilters = [
+      {
+        limit: filters[0].limit,
+        type: "",
+        priority: "",
+        sectionRef: filters[0].sectionRef,
+      },
+    ];
     dispatch({
-      type: "FILTER",
-      payload: filteredArr,
+      type: "FILTERS",
+      payload: newFilters,
     });
   }
   if (key === "Tasks") {
-    const newData = filteredArr.filter((i) => i.type === "Task");
+    const newFilters = [
+      {
+        limit: filters[0].limit,
+        type: "Task",
+        priority: filters[0].priority,
+        sectionRef: filters[0].sectionRef,
+      },
+    ];
     dispatch({
-      type: "FILTER",
-      payload: newData,
+      type: "FILTERS",
+      payload: newFilters,
     });
   }
   if (key === "Notes") {
-    const newData = filteredArr.filter((i) => i.type === "Reviewnote");
+    const newFilters = [
+      {
+        limit: filters[0].limit,
+        type: "Reviewnote",
+        priority: filters[0].priority,
+        sectionRef: filters[0].sectionRef,
+      },
+    ];
     dispatch({
-      type: "FILTER",
-      payload: newData,
+      type: "FILTERS",
+      payload: newFilters,
     });
   }
-  if (key === "High") {
-    const newData = filteredArr.filter((i) => i.priority.text === "High");
+
+  if (key === "Low" || key === "Medium" || key === "High") {
+    const newFilters = [
+      {
+        limit: filters[0].limit,
+        type: filters[0].type,
+        priority: key,
+        sectionRef: filters[0].sectionRef,
+      },
+    ];
     dispatch({
-      type: "FILTER",
-      payload: newData,
-    });
-  }
-  if (key === "Medium") {
-    const newData = filteredArr.filter((i) => i.priority.text === "Medium");
-    dispatch({
-      type: "FILTER",
-      payload: newData,
-    });
-  }
-  if (key === "Low") {
-    const newData = filteredArr.filter((i) => i.priority.text === "Low");
-    dispatch({
-      type: "FILTER",
-      payload: newData,
+      type: "FILTERS",
+      payload: newFilters,
     });
   }
 };

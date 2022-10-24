@@ -5,26 +5,26 @@ import { filterHandler } from "../../utils/helpers";
 
 const TypeFilter = () => {
   const { state, dispatch } = useContext(DataContext);
-  const { filteredData, reviewnotes } = state;
+  const { filters } = state;
 
   return (
     <>
       <h1 className="text-sm">Types</h1>
       <Button.Group>
         <Button
-          onClick={() => filterHandler("All", dispatch, reviewnotes)}
+          onClick={() => filterHandler("All", dispatch, filters)}
           color="gray"
         >
           All
         </Button>
         <Button
-          onClick={() => filterHandler("Tasks", dispatch, filteredData)}
+          onClick={() => filterHandler("Tasks", dispatch, filters)}
           color="gray"
         >
           Tasks
         </Button>
         <Button
-          onClick={() => filterHandler("Notes", dispatch, filteredData)}
+          onClick={() => filterHandler("Notes", dispatch, filters)}
           color="gray"
         >
           Notes
