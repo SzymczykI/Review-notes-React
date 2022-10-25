@@ -47,5 +47,4 @@ export interface Filters {
   limit: number;
   type: string;
   priority: string;
-  sectionRef: string
 }

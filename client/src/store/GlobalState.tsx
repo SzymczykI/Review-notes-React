@@ -25,7 +25,6 @@ export const DataContext = createContext<{
       limit: 3,
       type: "",
       priority: "",
-      sectionRef: "",
     }],
   },
   dispatch: () => null,
@@ -40,7 +39,6 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       limit: 3,
       type: "",
       priority: "",
-      sectionRef: "",
     }],
   };
 const [state, dispatch] = useReducer(reducers, initialState);

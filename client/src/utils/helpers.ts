@@ -11,7 +11,6 @@ export const filterHandler = (
         limit: filters[0].limit,
         type: "",
         priority: "",
-        sectionRef: filters[0].sectionRef,
       },
     ];
     dispatch({
@@ -25,7 +24,6 @@ export const filterHandler = (
         limit: filters[0].limit,
         type: "Task",
         priority: filters[0].priority,
-        sectionRef: filters[0].sectionRef,
       },
     ];
     dispatch({
@@ -39,7 +37,6 @@ export const filterHandler = (
         limit: filters[0].limit,
         type: "Reviewnote",
         priority: filters[0].priority,
-        sectionRef: filters[0].sectionRef,
       },
     ];
     dispatch({
@@ -54,7 +51,6 @@ export const filterHandler = (
         limit: filters[0].limit,
         type: filters[0].type,
         priority: key,
-        sectionRef: filters[0].sectionRef,
       },
     ];
     dispatch({

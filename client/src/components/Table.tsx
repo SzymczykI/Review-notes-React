@@ -24,7 +24,6 @@ const Table = () => {
       limit: filters[0].limit + 3,
       type: filters[0].type,
       priority: filters[0].priority,
-      sectionRef: filters[0].sectionRef,
     }];
 
     dispatch({
