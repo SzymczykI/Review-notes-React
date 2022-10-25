@@ -1,5 +1,8 @@
 # Review Notes
 
+- main branch -> more frontend approach 
+- BEApproach branch -> load more and some filtering moved to backend
+
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
@@ -30,9 +33,6 @@ Project is: _in progress_
 ![Alt text](https://i.ibb.co/P5RKvyd/Zrzut-ekranu-2022-10-14-o-01-45-59.png "screen")
 
 ## Setup
-
-- main branch -> more frontend approach 
-- BEApproach branch -> load more and some filtering moved to backend
 
 Server setup:
 
